@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable-v24/shape.xml" value="0.6142857142857143" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/btn_rounded_corner.xml" value="0.2169230769230769" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/btn_selector_hover.xml" value="0.14166666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/edit_text_rounded.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.14166666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_depence.xml" value="0.15989583333333332" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_depense_background.xml" value="0.14166666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_depense_foreground.xml" value="0.14166666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_entrer.xml" value="0.15989583333333332" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_hangard.xml" value="0.15989583333333332" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14814814814814814" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_menu_camera.xml" value="0.14814814814814814" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_parameter.xml" value="0.15989583333333332" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_ressource_humaine.xml" value="0.15989583333333332" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_sortie.xml" value="0.15989583333333332" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/line_shape.xml" value="0.14166666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_app_bar.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_app_bar_notradius.xml" value="0.18703703703703703" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_roundMediumbottom_left_right.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_round_mediumbottom_left_right.xml" value="0.14166666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_roundbottom_right.xml" value="0.1638888888888889" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_roundtopbottom.xml" value="0.1638888888888889" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_add_enter.xml" value="0.16" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_add_expense.xml" value="0.22" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_enter.xml" value="0.12552083333333333" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_expenses.xml" value="0.2" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_main.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_main_card_menu.xml" value="0.14" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_main_test.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/app_bar_main.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_addlistprod_enter.xml" value="0.1" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_dateexepense_search.xml" value="0.20416666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/cards_layout_expense.xml" value="0.20416666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/content_main.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/content_main_activity_test.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/fragment_gallery.xml" value="0.2" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/item_selectproduct_add_enter.xml" value="0.2" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/nav_header_main.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/main.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/menu_toolbar.xml" value="0.20416666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/menu_toolbar_add.xml" value="0.1" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/menu_toolbar_expense.xml" value="0.1" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/mipmap-anydpi-v26/ic_depense.xml" value="0.14814814814814814" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/mipmap-anydpi-v26/ic_depense_round.xml" value="0.11354166666666667" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/xml/searchable.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1328125" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

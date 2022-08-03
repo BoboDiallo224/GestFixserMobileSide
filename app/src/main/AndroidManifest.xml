@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.fixsermobileapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FixserMobileApp.NoActionBar">
+        <activity
+            android:name=".enter.AddEnterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".enter.EnterActivity"
+            android:exported="true"
+            android:label="@string/title_activity_enter"
+            android:theme="@style/Theme.FixserMobileApp.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".expenses.AddExpenseActivity"
+            android:exported="true" />
+        <activity
+            android:name=".expenses.ExpensesActivity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="android.app.SearchableInfo"
+            android:resource="@xml/searchable" />
+
+        <activity
+            android:name=".MainActivityCardMenu"
+            android:exported="true"
+            android:theme="@style/Theme.FixserMobileApp.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.FixserMobileApp.NoActionBar">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+    </application>
+
+</manifest>

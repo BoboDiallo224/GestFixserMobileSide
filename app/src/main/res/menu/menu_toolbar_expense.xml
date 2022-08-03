@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_add_expense"
+        android:title="Add"
+        android:icon="@drawable/ic_baseline_add_circle_24"
+        app:showAsAction="withText|always"/>
+
+    <item android:id="@+id/search_expense"
+        android:title="@string/search_title"
+        android:icon="@drawable/ic_baseline_search"
+        app:showAsAction="ifRoom|withText"
+        app:actionViewClass="android.widget.SearchView"/>
+
+    <item android:id="@+id/call_statistic_expense"
+        android:title="Satatistique"
+        app:showAsAction="never"/>
+
+    <!--<item android:id="@+id/call_statistic_expense1"
+        android:title="Satatistique"
+        app:showAsAction="never"/>-->
+</menu>

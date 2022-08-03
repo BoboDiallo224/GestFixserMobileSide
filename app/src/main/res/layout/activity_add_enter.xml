@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_white"
+    tools:context=".enter.AddEnterActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.FixserMobileApp.AppBarOverlay"
+        android:background="@drawable/shape_app_bar_notradius"
+        android:id="@+id/app_add_enter"
+        app:elevation="0dp"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_add_enter"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/scrv_add_enter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_add_enter">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/lny1_add_enter"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/shape_roundbottom_left_right"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/txv_intotal_enter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Total Entrer:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/big_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txv_total_enter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toEndOf="@+id/txv_intotal_enter"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/big_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txv_inrest_enter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txv_intotal_enter"
+                    android:layout_gravity="center"
+                    android:text="Reste à payer:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/big_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txv_rest_enter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txv_intotal_enter"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toEndOf="@+id/txv_inrest_enter"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/yellow"
+                    android:textSize="@dimen/big_text"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/lny1_add_enter"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edt_designation_add_enter"
+                    style="@style/myform_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_addexpense_height"
+                    android:drawableStart="@drawable/ic_sortie"
+                    android:hint="@string/designation" />
+
+                <TextView
+                    android:id="@+id/txt_select_four"
+                    style="@style/myform_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_addexpense_height"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/select_four"
+                    android:textSize="@dimen/medium_text"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
+                <TextView
+                    android:id="@+id/txt_add_listfrais_enter"
+                    style="@style/myform_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_addexpense_height"
+                    android:gravity="center"
+                    android:text="@string/addcost_enter"
+                    android:textSize="@dimen/medium_text"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
+                <EditText
+                    android:id="@+id/edt_mnt_pay_add_enter"
+                    style="@style/myform_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_addexpense_height"
+                    android:drawableStart="@drawable/ic_sortie"
+                    android:hint="@string/montant_payer"
+                    android:inputType="number"/>
+
+                <EditText
+                    android:id="@+id/edt_country_add_enter"
+                    style="@style/myform_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_addexpense_height"
+                    android:drawableStart="@drawable/ic_sortie"
+                    android:hint="@string/pays_origine" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/edt_marg_start"
+                    android:layout_marginTop="@dimen/edt_marg_start"
+                    android:layout_marginEnd="@dimen/edt_marg_start"
+                    android:layout_marginBottom="@dimen/edt_marg_start"
+                    android:drawableBottom="@drawable/line_shape">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="Listes des Produits de l'enter"
+                        android:textColor="@color/purple_200"
+                        android:textSize="@dimen/medium_text"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btn_addlistprod_enter"
+                        android:layout_width="55dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:src="@drawable/ic_baseline_add_circle_outline_24" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_item_prod_enter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/scrv_add_enter">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>
