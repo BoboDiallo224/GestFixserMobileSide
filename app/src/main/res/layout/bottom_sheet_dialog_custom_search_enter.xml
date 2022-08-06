@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Relative Layout for Searching by Supplier-->
+    <RelativeLayout
+        android:id="@+id/rly_search_by_supplier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:visibility="visible">
+
+        <!--text view for displaying course tracks-->
+
+        <!--text view for displaying course duration-->
+
+        <!--button for dismissing our dialog-->
+         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Dismiss dialog"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
+    <!-- End Relative Layout for Searching by Supplier--><!--Relative Layout for Searching by Supplier-->
+
+    <!--Relative Layout for Searching by Date-->
+    <RelativeLayout
+        android:id="@+id/rly_search_enter_by_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:visibility="gone">
+
+        <!--text view for displaying course tracks-->
+
+        <!--text view for displaying course duration-->
+
+        <!--button for dismissing our dialog-->
+         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Dismiss dialog"
+            android:textAllCaps="false"
+             />
+
+    </RelativeLayout>
+    <!-- End Relative Layout for Searching by Date-->
+
+    <!--Relative Layout for Searching by Country-->
+    <RelativeLayout
+        android:id="@+id/rly_search_enter_by_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:visibility="gone">
+
+        <!--text view for displaying course tracks-->
+
+        <!--text view for displaying course duration-->
+
+        <!--button for dismissing our dialog-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Dismiss dialog"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
+    <!-- End Relative Layout for Searching by Country-->
+</androidx.cardview.widget.CardView>

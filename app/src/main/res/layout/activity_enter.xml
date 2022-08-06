@@ -34,7 +34,7 @@
             android:id="@+id/scrv_enter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbars="none"
             android:fillViewport="true">
 
             <LinearLayout

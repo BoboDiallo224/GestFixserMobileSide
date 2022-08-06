@@ -57,17 +57,14 @@ class ExpensesActivity : AppCompatActivity() {
             redLayout.visibility = if (redLayout.isGone) View.VISIBLE else View.GONE*/
             showButtomSheetModal()
         })
-
         //Test
-        //myOnClickListener =  MyOnClickListener(this)
-
+        //myOnClickListener =  MyOnClickListener(this
         recyclerView = findViewById(R.id.my_recycler_view_expense)
         recyclerView!!.setHasFixedSize(true)
 
         layoutManager = LinearLayoutManager(this)
         recyclerView!!.layoutManager = layoutManager
         //recyclerView!!.itemAnimator = DefaultItemAnimator()
-
         /*data = ArrayList()
         for ( i in  MyData.nameArray.indices) {
             data!!.add(
@@ -80,8 +77,10 @@ class ExpensesActivity : AppCompatActivity() {
             )
 
         }*/
+        //On bellow lines we are initialising our adapter
         adapter = CustomAdapterExpense()
         //recyclerView!!.scrollToPosition(adapter!!.itemCount -1);
+        //on below lines we are
         recyclerView!!.adapter = adapter
     }
 
@@ -90,24 +89,18 @@ class ExpensesActivity : AppCompatActivity() {
         val dialog = BottomSheetDialog(this)
         // on below line we are inflating a layout file which we have created.
         val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_dateexepense_search, null)
-        // on below line we are creating a variable for our button
-        // which we are using to dismiss our dialog.
+        // on below line we are creating a variable for our button which we are using to dismiss our dialog.
         val btnClose = view.findViewById<Button>(R.id.idBtnDismiss)
-        // on below line we are adding on click listener
-        // for our dismissing the dialog button.
+        // on below line we are adding on click listener // for our dismissing the dialog button.
         btnClose.setOnClickListener {
-            // on below line we are calling a dismiss
-            // method to close our dialog.
+            // on below line we are calling a dismiss // method to close our dialog.
             dialog.dismiss()
         }
-        // below line is use to set cancelable to avoid
-        // closing of dialog box when clicking on the screen.
+        // below line is use to set cancelable to avoid // closing of dialog box when clicking on the screen.
         dialog.setCancelable(true)
-        // on below line we are setting
-        // content view to our view.
+        // on below line we are setting // content view to our view.
         dialog.setContentView(view)
-        // on below line we are calling
-        // a show method to display a dialog.
+        // on below line we are calling // a show method to display a dialog.
         dialog.show()
     }
 
