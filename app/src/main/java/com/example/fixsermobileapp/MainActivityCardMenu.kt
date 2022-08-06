@@ -14,11 +14,13 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import com.example.fixsermobileapp.enter.EnterActivity
+import com.example.fixsermobileapp.exit_sale.ExitSaleActivity
 import com.example.fixsermobileapp.expenses.ExpensesActivity
 
 
 class MainActivityCardMenu : AppCompatActivity() {
     lateinit var cardMenuEnter:CardView
+    lateinit var cardMenuExitSale:CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_card_menu)
@@ -26,9 +28,12 @@ class MainActivityCardMenu : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this, R.anim.slide_down)
         findViewById<RelativeLayout>(R.id.re_layout_card_menu).startAnimation(animation)
         //overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        //CardView Recuperation des id des
+
+        //CardView Recuperation des id
         val cardMenuExpense = findViewById<CardView>(R.id.card_expense)
         cardMenuEnter = findViewById(R.id.card_menu_enter)
+        cardMenuExitSale = findViewById(R.id.card_menu_exit_sale)
+
         //Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar_menu_card)
         setSupportActionBar(toolbar)
@@ -38,8 +43,8 @@ class MainActivityCardMenu : AppCompatActivity() {
         actionbar!!.title = "Acceuil"
 
 
-        //CardViews events
-        //Open ExspenseActivity
+        // bellows line is when you click on one CardView
+        //Open ExspenseActivity when click on ca
         cardMenuExpense.setOnClickListener{
             // Entrer CardView Animation
             //val animationCard = AnimationUtils.loadAnimation(this, R.anim.rotate)
@@ -60,6 +65,16 @@ class MainActivityCardMenu : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_bottom)
         })
 
+        //On below line open ExitSaleActivity when card View is clicked
+        cardMenuExitSale.setOnClickListener(View.OnClickListener {
+            //Apply Card Animation
+            cardMenuEnter.startAnimation(cardAnimation())
+            //Open ExiteSaleActivity
+            val intent = Intent(this, ExitSaleActivity::class.java)
+            startActivity(intent)
+            //Make animation when ExitSaleActivity is opening
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_bottom)
+        })
 
     }
 

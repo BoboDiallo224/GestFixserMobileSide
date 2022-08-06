@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FixserMobileApp.NoActionBar">
         <activity
+            android:name=".exit_sale.ExitSaleActivity"
+            android:exported="true" />
+        <activity
             android:name=".enter.AddEnterActivity"
             android:exported="true" />
         <activity
