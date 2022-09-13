@@ -1,5 +1,6 @@
 package com.example.fixsermobileapp.expenses
 
+import android.app.ProgressDialog
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -9,24 +10,43 @@ import android.util.Log
 import android.view.*
 import android.view.animation.TranslateAnimation
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.fixsermobileapp.R
 import androidx.recyclerview.widget.RecyclerView
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fixsermobileapp.expenses.adapter.CustomAdapterExpense
-import com.example.fixsermobileapp.expenses.entities.DataModelExpense
+import com.example.fixsermobileapp.expenses.adapter.PaginationScrollListener
+import com.example.fixsermobileapp.expenses.entities.Expense
+import com.example.fixsermobileapp.retrofit.ExpenseService
+import com.example.fixsermobileapp.retrofit.NetWorkClient
+import com.example.fixsermobileapp.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.create
 
 class ExpensesActivity : AppCompatActivity() {
-    private var adapter: RecyclerView.Adapter<CustomAdapterExpense.MyViewHolder>? = null
-    private var layoutManager: RecyclerView.LayoutManager? = null
+    lateinit var expenseAdapter: CustomAdapterExpense
+    //private var expenseAdapter: RecyclerView.Adapter<CustomAdapterExpense.MyViewHolder>? = null
+    //private var layoutManager: RecyclerView.LayoutManager? = null
+    private var layoutManager: LinearLayoutManager? = null
     private var recyclerView: RecyclerView? = null
-    private var data: ArrayList<DataModelExpense>? = null
+    private var mExpenseList: ArrayList<Expense>? = null
     lateinit var myOnClickListener: View.OnClickListener
     private var removedItems: ArrayList<Int>? = null
-
+    //Pagination
+    var isLoading:Boolean = false
+    var isLastPage:Boolean =false
+    private val PAGE_START = 1
+    var currentPage:Int = PAGE_START
+    var TOTAL_PAGES:Int = 5
+    lateinit var mProgressBar:ProgressBar
+    private lateinit var service:ExpenseService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expenses)
@@ -45,7 +65,6 @@ class ExpensesActivity : AppCompatActivity() {
         val btn =findViewById<Button>(com.example.fixsermobileapp.R.id.btn)
         btn.setOnClickListener(View.OnClickListener {
             /*Toast.makeText(this,"OK",Toast.LENGTH_SHORT).show()
-
             val redLayout = findViewById<View>(R.id.redLayout)
             val parent = findViewById<ViewGroup>(R.id.parent_relative)
 
@@ -57,31 +76,142 @@ class ExpensesActivity : AppCompatActivity() {
             redLayout.visibility = if (redLayout.isGone) View.VISIBLE else View.GONE*/
             showButtomSheetModal()
         })
+
         //Test
+        service = NetWorkClient.getClient(Constants.BASE_URL).create<ExpenseService>()
         //myOnClickListener =  MyOnClickListener(this
         recyclerView = findViewById(R.id.my_recycler_view_expense)
+        mProgressBar = findViewById(R.id.idPBLoading)
+
         recyclerView!!.setHasFixedSize(true)
-
-        layoutManager = LinearLayoutManager(this)
+        layoutManager = LinearLayoutManager(this@ExpensesActivity)
         recyclerView!!.layoutManager = layoutManager
-        //recyclerView!!.itemAnimator = DefaultItemAnimator()
-        /*data = ArrayList()
-        for ( i in  MyData.nameArray.indices) {
-            data!!.add(
-                DataModelExpense(
-                    MyData.nameArray[i],
-                    MyData.versionArray.get(i),
-                    MyData.id_.get(i),
-                    MyData.drawableArray.get(i)
-                )
-            )
-
-        }*/
-        //On bellow lines we are initialising our adapter
-        adapter = CustomAdapterExpense()
+        expenseAdapter = CustomAdapterExpense()
+        scrollListener()
         //recyclerView!!.scrollToPosition(adapter!!.itemCount -1);
         //on below lines we are
-        recyclerView!!.adapter = adapter
+
+    }
+
+    fun getExpenses(){
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setCancelable(false); // set cancelable to false
+        progressDialog.setMessage("Please Wait"); // set message
+        progressDialog.show()
+
+        val service = NetWorkClient.getClient(Constants.BASE_URL).create<ExpenseService>()
+
+        val call: Call<ArrayList<Expense>> = service.getAllExpenses()
+        call.enqueue(object :Callback<ArrayList<Expense>>{
+
+            override fun onResponse(call: Call<ArrayList<Expense>>, response: Response<ArrayList<Expense>>) {
+                if (response.isSuccessful){
+                    mExpenseList = response.body()
+
+                    //recyclerView!!.itemAnimator = DefaultItemAnimator()
+                    //On bellow lines we are initialising our adapter
+                    expenseAdapter = CustomAdapterExpense()
+                    //recyclerView!!.scrollToPosition(adapter!!.itemCount -1);
+                    //on below lines we are
+                    recyclerView!!.adapter = expenseAdapter
+                    progressDialog.hide()
+                }
+                else{
+                    progressDialog.hide()
+                    Toast.makeText(this@ExpensesActivity,"500",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Expense>>, t: Throwable) {
+                progressDialog.hide()
+                println(t)
+                Toast.makeText(this@ExpensesActivity,"Failed"+t, Toast.LENGTH_SHORT).show()
+            }
+
+
+        })
+    }
+
+    fun scrollListener(){
+        recyclerView!!.addOnScrollListener(object:PaginationScrollListener(layoutManager){
+            override fun loadMoreItems() {
+                isLoading = true
+                currentPage += 1
+                Toast.makeText(this@ExpensesActivity, ""+currentPage,Toast.LENGTH_SHORT).show()
+                loadNextPage()
+                //getExpenses()
+            }
+
+            override fun isLastPage(): Boolean {
+                return isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
+
+        })
+        loadFirstPage()
+        //getExpenses()
+    }
+
+    fun loadNextPage(){
+        val call: Call<ArrayList<Expense>> = service.getAllExpenses()
+        call.enqueue(object :Callback<ArrayList<Expense>>{
+
+            override fun onResponse(call: Call<ArrayList<Expense>>, response: Response<ArrayList<Expense>>) {
+                if (response.isSuccessful){
+                    expenseAdapter.removeLoadingFooter()
+                    isLoading = false
+                    mExpenseList = response.body()
+                    expenseAdapter.addAll(mExpenseList!!)
+                    recyclerView!!.adapter = expenseAdapter
+                    if (currentPage != TOTAL_PAGES) expenseAdapter.addLoadingFooter()
+                    else isLastPage = true
+
+                }
+                else{
+                    Toast.makeText(this@ExpensesActivity,"500",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Expense>>, t: Throwable) {
+                Toast.makeText(this@ExpensesActivity,"Failed"+t, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun loadFirstPage(){
+
+        //val service = NetWorkClient.getClient(Constants.BASE_URL).create<ExpenseService>()
+        val call: Call<ArrayList<Expense>> = service.getAllExpenses()
+        call.enqueue(object :Callback<ArrayList<Expense>>{
+
+            override fun onResponse(call: Call<ArrayList<Expense>>, response: Response<ArrayList<Expense>>) {
+                if (response.isSuccessful){
+                    mExpenseList = response.body()
+                    mProgressBar.visibility = View.GONE
+                    expenseAdapter.addAll(mExpenseList!!)
+                    recyclerView!!.adapter = expenseAdapter
+                    if (currentPage <= TOTAL_PAGES) expenseAdapter.addLoadingFooter()
+                    else isLastPage = true
+                }
+                else{
+                    mProgressBar.visibility = View.GONE
+                    Toast.makeText(this@ExpensesActivity,"500",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Expense>>, t: Throwable) {
+                mProgressBar.visibility = View.GONE
+                println("The ERROR..........................."+t+"..........................")
+                Toast.makeText(this@ExpensesActivity,"Failed"+t, Toast.LENGTH_SHORT).show()
+
+            }
+
+
+        })
+
     }
 
     fun showButtomSheetModal(){
@@ -186,5 +316,11 @@ class ExpensesActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //loadNextPage()
+        Toast.makeText(this, "Resume",Toast.LENGTH_SHORT).show()
     }
 }

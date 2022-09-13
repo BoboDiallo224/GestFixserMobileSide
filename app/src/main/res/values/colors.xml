@@ -14,5 +14,6 @@
     <color name="black_clear">#6A6969</color>
     <color name="card_menu_color">#FFFFFFFF</color>
     <color name="yellow">#FFD740</color>
+    <color name="myspinner_text_color">#536DFE</color>
 
 </resources>

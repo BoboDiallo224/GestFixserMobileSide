@@ -38,6 +38,7 @@ class ProductListEnterAdapter (
         val view = inflater.inflate(R.layout.item_selectproduct_add_enter, parent, false)
         val holder = ProductViewHolder(view)
 
+
         // item view is the root view for each row
         holder.itemView.setOnClickListener {
 

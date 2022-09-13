@@ -13,6 +13,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,13 +29,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/edt_paddin_sta_end"
-                        android:text="@string/ajouter_produit"
+                        android:text="@string/add_fresh"
                         android:textColor="@color/white"
                         android:textSize="@dimen/big_text"
                         android:textStyle="bold" />
 
                     <ImageButton
-                        android:id="@+id/btn_close_listprod_enter"
+                        android:id="@+id/btn_close_addFreshEnter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -48,7 +49,7 @@
 
 
                 <EditText
-                    android:id="@+id/edt_designation_prod_enter"
+                    android:id="@+id/edt_designation_freshExpense"
                     style="@style/myform_style"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edt_addexpense_height"
@@ -56,58 +57,45 @@
                     android:hint="@string/designation" />
 
                 <EditText
-                    android:id="@+id/edt_qte_prod_enter"
-                    style="@style/myform_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edt_addexpense_height"
-                    android:drawableStart="@drawable/ic_sortie"
-                    android:hint="@string/quantite"
-                    android:inputType="number"/>
-
-                <EditText
-                    android:id="@+id/edt_pu_prod_enter"
+                    android:id="@+id/edt_amountFreshExpense"
                     style="@style/myform_style"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edt_addexpense_height"
                     android:drawableStart="@drawable/ic_baseline_money_24"
-                    android:hint="@string/pri_unit"
-                    android:inputType="number"/>
+                    android:hint="@string/amountFresh"
+                    android:inputType="number" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/edt_marg_start"
-                    android:layout_marginTop="@dimen/edt_marg_top"
-                    android:layout_marginEnd="@dimen/edt_marg_start"
-                    android:text="@string/montant_total"
-                    android:textSize="@dimen/big_text"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_montanttot_prod_enter"
-                    style="@style/myform_style"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edt_addexpense_height"
-                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text=""
-                    android:textSize="@dimen/medium_text"
-                    android:textStyle="bold" />
+                    android:layout_margin="@dimen/edt_marg_top"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_itemprod_enter"
-                    style="@style/ButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/edt_marg_start"
-                    android:layout_marginTop="@dimen/edt_marg_top"
-                    android:layout_marginEnd="@dimen/edt_marg_start"
-                    android:drawableEnd="@drawable/ic_baseline_check_24"
-                    android:text="@string/valider" />
+                    <Button
+                        android:id="@+id/btn_addFreshExpense"
+                        style="@style/ButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableEnd="@drawable/ic_baseline_check_24"
+                        android:text="@string/valider" />
+
+                    <Button
+                        android:id="@+id/btn_updateFreshExpense"
+                        style="@style/ButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/edt_marg_start"
+                        android:drawableEnd="@drawable/ic_baseline_check_24"
+                        android:text="@string/update" />
+                </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcv_item_prod_botmsheet_enter"
+                    android:id="@+id/rcv_freshExpense"
+                    android:layout_margin="@dimen/edt_marg_top"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 

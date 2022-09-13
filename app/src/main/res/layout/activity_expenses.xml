@@ -112,7 +112,13 @@
             android:scrollbarSize="4dp"
             android:scrollbarThumbVertical="@color/purple_200"
             android:scrollbars="vertical" />
-
+        <!--we are adding progress bar for the purpose of loading-->
+        <ProgressBar
+            android:id="@+id/idPBLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
 </RelativeLayout>

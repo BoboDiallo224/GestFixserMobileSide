@@ -27,7 +27,7 @@
     <string name="libelle">Libelle</string>
     <string name="quantite">Quantite</string>
     <string name="pri_unit">Prix Unitaire</string>
-    <string name="frais">Frais</string>
+    <string name="frais">Ajout Frais</string>
     <string name="date_expense">Date Depense</string>
     <string name="valider">Valider</string>
     <string name="title_activity_enter">EnterActivity</string>
@@ -40,4 +40,7 @@
     <string name="close">Fermer</string>
     <string name="delete">Supprimer</string>
     <string name="montant_payer">Montant Payer</string>
+    <string name="add_fresh">Ajouter des frais</string>
+    <string name="amountFresh">Montant Frais</string>
+    <string name="update">Update</string>
 </resources>

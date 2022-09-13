@@ -19,12 +19,14 @@ import com.example.fixsermobileapp.expenses.ExpensesActivity
 
 
 class MainActivityCardMenu : AppCompatActivity() {
+    //Widgets declarations
     lateinit var cardMenuEnter:CardView
     lateinit var cardMenuExitSale:CardView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_card_menu)
-
+        //Set animation when activity is starting
         val animation = AnimationUtils.loadAnimation(this, R.anim.slide_down)
         findViewById<RelativeLayout>(R.id.re_layout_card_menu).startAnimation(animation)
         //overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -34,7 +36,7 @@ class MainActivityCardMenu : AppCompatActivity() {
         cardMenuEnter = findViewById(R.id.card_menu_enter)
         cardMenuExitSale = findViewById(R.id.card_menu_exit_sale)
 
-        //Toolbar
+        //Setting Toolbar and Action Bar
         val toolbar = findViewById<Toolbar>(R.id.toolbar_menu_card)
         setSupportActionBar(toolbar)
         //actionbar
@@ -42,8 +44,7 @@ class MainActivityCardMenu : AppCompatActivity() {
         //set actionbar title
         actionbar!!.title = "Acceuil"
 
-
-        // bellows line is when you click on one CardView
+        // bellows line is when you click on one of CardViews
         //Open ExspenseActivity when click on ca
         cardMenuExpense.setOnClickListener{
             // Entrer CardView Animation
@@ -68,7 +69,7 @@ class MainActivityCardMenu : AppCompatActivity() {
         //On below line open ExitSaleActivity when card View is clicked
         cardMenuExitSale.setOnClickListener(View.OnClickListener {
             //Apply Card Animation
-            cardMenuEnter.startAnimation(cardAnimation())
+            cardMenuExitSale.startAnimation(cardAnimation())
             //Open ExiteSaleActivity
             val intent = Intent(this, ExitSaleActivity::class.java)
             startActivity(intent)

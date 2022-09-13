@@ -10,8 +10,11 @@
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.14166666666666666" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.2203125" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.1" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.14290540540540542" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.2203125" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2203125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_baseline_info_24.xml" value="0.14290540540540542" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_depence.xml" value="0.15989583333333332" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_depense_background.xml" value="0.14166666666666666" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/ic_depense_foreground.xml" value="0.14166666666666666" />
@@ -30,8 +33,9 @@
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_round_mediumbottom_left_right.xml" value="0.14166666666666666" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_roundbottom_right.xml" value="0.1638888888888889" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/shape_roundtopbottom.xml" value="0.1638888888888889" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/drawable/spinner_bg.xml" value="0.14290540540540542" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_add_enter.xml" value="0.16" />
-        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_add_expense.xml" value="0.22" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_add_expense.xml" value="0.2" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_enter.xml" value="0.12552083333333333" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_exit_sale.xml" value="0.1" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_expenses.xml" value="0.2" />
@@ -39,16 +43,21 @@
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_main_card_menu.xml" value="0.14" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/activity_main_test.xml" value="0.1328125" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/app_bar_main.xml" value="0.1328125" />
-        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_addlistprod_enter.xml" value="0.1" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_addFreshExpense.xml" value="0.13243243243243244" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_add_fresh_expense.xml" value="0.22" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_addlistprod_enter.xml" value="0.14" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_custom_search_enter.xml" value="0.1" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/bottom_sheet_dialog_dateexepense_search.xml" value="0.20416666666666666" />
-        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/cards_layout_expense.xml" value="0.20416666666666666" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/cards_layout_expense.xml" value="0.2" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/content_main.xml" value="0.1328125" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/content_main_activity_test.xml" value="0.1328125" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/fragment_gallery.xml" value="0.2" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/item_fresh_expense.xml" value="0.13243243243243244" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/item_loading.xml" value="0.13243243243243244" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/item_selectproduct_add_enter.xml" value="0.2" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/nav_header_main.xml" value="0.1328125" />
+        <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/layout/type_expense_adapter_spinner.xml" value="0.13243243243243244" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/main.xml" value="0.1328125" />
         <entry key="..\:/ProjectComputer/FxserApps/mobile/FixserMobileApp/app/src/main/res/menu/menu_toolbar.xml" value="0.20416666666666666" />

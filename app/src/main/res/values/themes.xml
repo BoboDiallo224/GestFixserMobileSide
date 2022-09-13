@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:theme">@style/Base_ToolbarTheme</item>
         <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
         <!-- <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>-->
     </style>
 
@@ -89,6 +90,12 @@
     <style name="Theme.FixserMobileApp.NoActionBar.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="mySpinnerItemStyle">
+        <item name="android:textColor">@color/myspinner_text_color</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Theme.FixserMobileApp.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

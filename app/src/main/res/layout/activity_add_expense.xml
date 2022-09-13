@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_white"
     tools:context=".expenses.AddExpenseActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -22,9 +23,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-        android:layout_below="@+id/app_bar_menu_add_expense"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_bar_menu_add_expense">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -44,18 +45,19 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:text="Total Depense:"
-                    android:textColor="@color/red_color"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/big_text"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/total_amount_expense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:gravity="center"
-                    android:text="1 500 000 GNF"
-                    android:textColor="@color/red_color"
+                    android:text="0"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/big_text"
                     android:textStyle="bold" />
 
@@ -78,7 +80,7 @@
                     android:layout_marginTop="@dimen/edt_marg_top"
                     android:layout_marginEnd="@dimen/edt_marg_start"
                     android:background="@drawable/edit_text_rounded"
-                    android:drawableStart="@drawable/ic_sortie"
+                    android:drawableStart="@drawable/ic_baseline_info_24"
                     android:drawablePadding="@dimen/edt_paddin_draw"
                     android:hint="@string/libelle"
                     android:paddingStart="@dimen/edt_paddin_sta_end"
@@ -93,9 +95,10 @@
                     android:layout_marginTop="@dimen/edt_marg_top"
                     android:layout_marginEnd="@dimen/edt_marg_start"
                     android:background="@drawable/edit_text_rounded"
-                    android:drawableStart="@drawable/ic_parameter"
+                    android:drawableStart="@drawable/ic_baseline_money_24"
                     android:drawablePadding="@dimen/edt_paddin_draw"
                     android:hint="@string/quantite"
+                    android:inputType="number"
                     android:paddingStart="@dimen/edt_paddin_sta_end"
                     android:paddingEnd="@dimen/edt_paddin_sta_end"
                     android:textColor="@color/black" />
@@ -108,29 +111,26 @@
                     android:layout_marginTop="@dimen/edt_marg_top"
                     android:layout_marginEnd="@dimen/edt_marg_start"
                     android:background="@drawable/edit_text_rounded"
-                    android:drawableStart="@drawable/ic_parameter"
+                    android:drawableStart="@drawable/ic_baseline_money_24"
                     android:drawablePadding="@dimen/edt_paddin_draw"
                     android:hint="@string/pri_unit"
-                    android:inputType="numberDecimal"
-                    android:paddingStart="@dimen/edt_paddin_sta_end"
-                    android:paddingEnd="@dimen/edt_paddin_sta_end"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@+id/frais_add_expense"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edt_addexpense_height"
-                    android:layout_marginStart="@dimen/edt_marg_start"
-                    android:layout_marginTop="@dimen/edt_marg_top"
-                    android:layout_marginEnd="@dimen/edt_marg_start"
-                    android:background="@drawable/edit_text_rounded"
-                    android:drawableStart="@drawable/ic_parameter"
-                    android:drawablePadding="@dimen/edt_paddin_draw"
-                    android:hint="@string/frais"
                     android:inputType="number"
                     android:paddingStart="@dimen/edt_paddin_sta_end"
                     android:paddingEnd="@dimen/edt_paddin_sta_end"
                     android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txt_add_expense_fresh"
+                    style="@style/myform_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edt_addexpense_height"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:text="@string/frais"
+                    android:textSize="@dimen/big_text"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -144,12 +144,37 @@
 
                 </TextView>
 
-                <Spinner
-                    android:id="@+id/spinner"
+                <LinearLayout
+                    android:id="@+id/cl_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edt_addexpense_height"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/edt_marg_start"
-                    android:layout_marginEnd="@dimen/edt_marg_start" />
+                    android:layout_marginTop="@dimen/marg_top10"
+                    android:layout_marginEnd="@dimen/edt_marg_start"
+                    android:background="@drawable/edit_text_rounded"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spinner_expense"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/edt_addexpense_height"
+                        android:layout_marginStart="@dimen/edt_marg_start"
+                        android:layout_marginEnd="@dimen/edt_marg_start"
+                        android:layout_weight="1"
+                        android:theme="@style/mySpinnerItemStyle" />
+
+                    <!--<ImageView
+                        android:id="@+id/btn_add_typeExpense"
+                        android:layout_width="75dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:focusable="true"
+                        android:layout_marginEnd="5dp"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:src="@drawable/ic_baseline_add_circle_outline_24" />-->
+
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/date_add_expense"
@@ -159,16 +184,19 @@
                     android:layout_marginTop="@dimen/edt_marg_top"
                     android:layout_marginEnd="@dimen/edt_marg_start"
                     android:background="@drawable/edit_text_rounded"
-                    android:drawableStart="@drawable/ic_parameter"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_baseline_calendar_today_24"
                     android:drawablePadding="@dimen/edt_paddin_draw"
+                    android:focusable="false"
                     android:hint="@string/date_expense"
-                    android:inputType="date"
+                    android:inputType="none"
                     android:paddingStart="@dimen/edt_paddin_sta_end"
                     android:paddingEnd="@dimen/edt_paddin_sta_end"
                     android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/btn_add_expense"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -176,8 +204,8 @@
                     android:layout_marginTop="@dimen/edt_marg_top"
                     android:layout_marginEnd="@dimen/edt_marg_start"
                     android:drawableStart="@drawable/ic_parameter"
-                    style="@style/ButtonStyle"
                     android:text="@string/valider" />
+
             </LinearLayout>
 
         </RelativeLayout>

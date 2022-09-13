@@ -38,10 +38,10 @@ class AddEnterActivity : AppCompatActivity() {
             modelToBeUpdated.add(model)
 
             // set the value of the clicked item in the edit text
-            /*designListProdEnter.setText(model.designationListProdEnter)
-            quantiteListProdEnter.setText(model.qteListProdEnter!!)
+            designListProdEnter.setText(model.designationListProdEnter)
+            quantityListProdEnter.setText(model.qteListProdEnter!!)
             priUnitListProdEnter.setText(model.puListProdEnter.toString())
-            montTotalListProdEnter.text = model.montTotListProdEnter.toString()*/
+            montTotalListProdEnter.text = model.montTotListProdEnter.toString()
         }
         override fun onDelete(model: ProductAddEnterModel) {
 
@@ -52,7 +52,7 @@ class AddEnterActivity : AppCompatActivity() {
 
     lateinit var btnAddListProdEnter:ImageView
 
-    //From
+    //Form
     private lateinit var designListProdEnter:EditText
     private lateinit var quantityListProdEnter:EditText
     private lateinit var priUnitListProdEnter:EditText
@@ -97,12 +97,11 @@ class AddEnterActivity : AppCompatActivity() {
         //Modal Sheet Bottom open event
         btnAddListProdEnter = findViewById(R.id.btn_addlistprod_enter)
         btnAddListProdEnter.setOnClickListener(View.OnClickListener {
-            addProductEnterFromButtomSheetModal()
+            buttomSheetModalAddEnterProduct()
         })
         //
         onEdtPayAmountTextChangedlistener()
     }
-
 
     /*
     updateProduct.setOnClickListener {
@@ -145,7 +144,7 @@ class AddEnterActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun addProductEnterFromButtomSheetModal(){
+    fun buttomSheetModalAddEnterProduct(){
 
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog_addlistprod_enter,null)
@@ -171,6 +170,7 @@ class AddEnterActivity : AppCompatActivity() {
         //Add Item Product Enter to List
         btnAddItemToListProdEnter.setOnClickListener {
             addItemProduct()
+            //
             totalAmountEnter = productListEnterAdapter.mProductList.sumOf { it.montTotListProdEnter!!.toInt() }
             //
             calculateTotalAndRestAmountEnter()
@@ -184,7 +184,7 @@ class AddEnterActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //Calculate Montant Total
-                calculateTotalProdItemOnEdtTextChanged()
+                calculateTotalItemProd()
 
             }
 
@@ -198,7 +198,7 @@ class AddEnterActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //Calculate Montant Total
-                calculateTotalProdItemOnEdtTextChanged()
+                calculateTotalItemProd()
 
             }
 
@@ -254,7 +254,7 @@ class AddEnterActivity : AppCompatActivity() {
         montTotalListProdEnter.text = montTotal
     }
 
-    fun calculateTotalProdItemOnEdtTextChanged(){
+    fun calculateTotalItemProd(){
         if (quantityListProdEnter.text.toString().trim().isNotBlank() && quantityListProdEnter.text.toString().trim().isNotEmpty() &&
             priUnitListProdEnter.text.toString().trim().isNotBlank() && priUnitListProdEnter.text.toString().trim().isNotEmpty()){
 
