@@ -2,6 +2,7 @@ package com.example.fixsermobileapp.expenses.entities
 
 import com.google.gson.annotations.SerializedName
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 data class Expense (
@@ -17,6 +18,10 @@ data class Expense (
     var expense_type:String? = null,
     //@SerializedName("expense_date")
     var expense_date: String? = null,
+    //Relations
+    @SerializedName("paymentExpenseTypes")
+    var paymentExpenseTypes:ArrayList<PaymentExpenseType>? = null,
+
     @SerializedName("freshExpense")
-    var freshExpense:List<FreshExpense>? = emptyList()
+    var freshExpense:ArrayList<FreshExpense>? = null
 )

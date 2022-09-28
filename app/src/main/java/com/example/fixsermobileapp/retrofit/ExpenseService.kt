@@ -1,6 +1,7 @@
 package com.example.fixsermobileapp.retrofit
 
 import com.example.fixsermobileapp.expenses.entities.Expense
+import com.example.fixsermobileapp.expenses.entities.PaymentExpenseType
 import com.example.fixsermobileapp.utils.Constants.BASE_URL
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -8,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ExpenseService{
 
@@ -18,18 +20,25 @@ interface ExpenseService{
     @GET("expense/expenses")
     fun getAllExpenses():Call<ArrayList<Expense>>
 
-   /* companion object {
+    @GET("expense/find_by_category/{category}")
+    fun getExpenseByCategory(@Path("category") category:String):Call<ArrayList<Expense>>
 
-        //var BASE_URL = "http://192.168.133.72:8080/"
+    @GET("expense/find_by_id/{id_expense}")
+    fun getExpenseById(@Path("id_expense") id_expense:Long):Call<Expense>
 
-        fun create() : ExpenseService {
+    @GET("expense/findcategories")
+    fun getExpenseCategories():Call<ArrayList<String>>
 
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BASE_URL)
-                .build()
-            return retrofit.create(ExpenseService::class.java)
+    @GET("expense/find_between_dates/{startDate}/{endDate}")
+    fun getAllExpenseBetweenDates(@Path("startDate")startDate:String,
+                                  @Path("endDate") endDate:String):Call<ArrayList<Expense>>
 
-        }
-    }*/
+    @GET("expense/find_by_date/{date}")
+    fun getAllExpenseByDate(@Path("date")date:String):Call<ArrayList<Expense>>
+    //Expense Payement
+
+    @POST("expense/payment/add/{id_expense}")
+    fun addExpensePayment(@Body paymentExpenseType: PaymentExpenseType,
+                          @Path("id_expense") id_expense: Long):Call<PaymentExpenseType>
+
 }

@@ -9,37 +9,37 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fixsermobileapp.R
 import com.example.fixsermobileapp.expenses.OnExpenseItemClickListener
+import com.example.fixsermobileapp.expenses.entities.Expense
 import com.example.fixsermobileapp.expenses.entities.FreshExpense
 import java.util.ArrayList
 
-class ExpenseFreshAdapter(private val mContext: Context,
-                          private val mOnExpenseOnClickListner:OnExpenseItemClickListener)
-    :RecyclerView.Adapter<ExpenseFreshAdapter.ExpenseFreshViewHolder>() {
-
+class ExpenseFreshDetailAdapter()
+    :RecyclerView.Adapter<ExpenseFreshDetailAdapter.ExpenseFreshViewHolder>() {
+        /*private val mContext: Context, private val mOnExpenseOnClickListner:OnExpenseItemClickListener*/
         val freshExpenseList:ArrayList<FreshExpense> = ArrayList()
 
         inner class ExpenseFreshViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-            val txtFreshDesignation = itemView.findViewById<TextView>(R.id.txt_design_expense_fresh)
-            val txtAmountFresh: TextView = itemView.findViewById(R.id.txt_amount_freshExpense)
-            val imgBtnRemoveFresh = itemView.findViewById<ImageButton>(R.id.ibtn_delet_itemExpenseFresh)
+            val txtFreshDesignation = itemView.findViewById<TextView>(R.id.txtDesignExpenseDetFresh)
+            val txtAmountFresh = itemView.findViewById<TextView>(R.id.txt_amountDetFreshExpense)
+            //val imgBtnRemoveFresh = itemView.findViewById<ImageButton>(R.id.ibtn_delet_itemExpenseFresh)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseFreshViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_fresh_expense,parent,false)
+        val view = inflater.inflate(R.layout.item_detail_fresh_expense,parent,false)
         val holder = ExpenseFreshViewHolder(view)
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             val position = holder.bindingAdapterPosition
             val model = freshExpenseList[position]
-            mOnExpenseOnClickListner.onUpdate(position,model)
+            //mOnExpenseOnClickListner.onUpdate(position,model)
         })
 
-        holder.imgBtnRemoveFresh.setOnClickListener(View.OnClickListener {
+        /*holder.imgBtnRemoveFresh.setOnClickListener(View.OnClickListener {
             val position = holder.adapterPosition
             val model = freshExpenseList[position]
             removeFresh(model)
-        })
+        })*/
 
         return holder
     }
@@ -79,6 +79,21 @@ class ExpenseFreshAdapter(private val mContext: Context,
         println(model)
         freshExpenseList.add(model)
         // notifyDataSetChanged() // this method is costly I avoid it whenever possible
+        notifyItemInserted(freshExpenseList.size)
+    }
+
+    /*fun addAll(model: FreshExpense){
+
+    }*/
+
+    fun addAll(expenses: ArrayList<FreshExpense>) {
+        for (result in expenses) {
+            add(result)
+        }
+    }
+
+    fun add(expense: FreshExpense) {
+        freshExpenseList.add(expense)
         notifyItemInserted(freshExpenseList.size)
     }
 

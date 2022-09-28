@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar
 import com.example.fixsermobileapp.R
 import android.widget.EditText
 import com.example.fixsermobileapp.expenses.entities.Expense
-import com.example.fixsermobileapp.retrofit.Api
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,19 +19,20 @@ import java.util.*
 
 
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fixsermobileapp.expenses.adapter.ExpenseFreshAdapter
 import com.example.fixsermobileapp.expenses.adapter.ExpenseTypeAdapter
 import com.example.fixsermobileapp.expenses.entities.TypeExpense
 import com.example.fixsermobileapp.expenses.entities.FreshExpense
+import com.example.fixsermobileapp.expenses.entities.PaymentExpenseType
 import com.example.fixsermobileapp.retrofit.ExpenseService
 import com.example.fixsermobileapp.retrofit.NetWorkClient
 import com.example.fixsermobileapp.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.create
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import kotlin.collections.ArrayList
 
 
 class AddExpenseActivity : AppCompatActivity() {
@@ -45,21 +45,25 @@ class AddExpenseActivity : AppCompatActivity() {
     lateinit var btnaddExpense:Button
     lateinit var txtAddExpenseFresh:TextView
     lateinit var txtTotalAmountExpense:TextView
-
     lateinit var edtDesignationFresh:EditText
     lateinit var edtAmountFresh:EditText
+    lateinit var edtamountPayAddExpense:EditText
+    lateinit var lnyAddExpenseBaseCategory:LinearLayout
+    lateinit var txtRestAmountExpense:TextView
+    lateinit var txtIndicUnitPriceExp:TextView
+    lateinit var txtIndicQtyExp:TextView
+    lateinit var txtIndicAmountPayExp:TextView
 
     var currentDate:Date? = null
     var dateString:String? = null
-    var sqlDate:java.sql.Date? = null
     var selecteTypeExpense:String = ""
     var totalAmountExpense:Double = 0.0
     private var typeListExpense = arrayListOf<TypeExpense>()
     lateinit var expenseFreshAdapter:ExpenseFreshAdapter
     private var modelToBeUpdated:Stack<FreshExpense> = Stack()
+    lateinit var typeExpense:TypeExpense
 
-    private val mOnExpenseItemClickListener =
-        object : OnExpenseItemClickListener {
+    private val mOnExpenseItemClickListener = object : OnExpenseItemClickListener {
             override fun onUpdate(position: Int, model: FreshExpense) {
                 // store this model that we want to update
                 // we will .pop() it when we want to update
@@ -86,19 +90,17 @@ class AddExpenseActivity : AppCompatActivity() {
 
         expenseFreshAdapter = ExpenseFreshAdapter(this@AddExpenseActivity,mOnExpenseItemClickListener)
 
-        dateString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
-        //val sdf = SimpleDateFormat("dd/MM/yyyy") yyyy-MM-dd HH:mm:ss
-        val sdf2 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        //dateString = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.US)
+        val sdf2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        dateString = sdf.format(Date())
         /*val sdf2 = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val dateString = sdf2.format(Date())*/
-        currentDate = sdf2.parse(dateString)
-
-        Toast.makeText(this,""+sqlDate, Toast.LENGTH_SHORT).show()
+        val */
+        //currentDate = sdf2.parse(dateString)
         edtdateExpense.setText(dateString)
-
         //Call Function that will display type expense data in spinner
         populateSpinnerTypeExpense()
-
+        makeViewFormVisible()
         //Edit Text Changed Listerner
         EditTextChangedListener()
 
@@ -108,10 +110,15 @@ class AddExpenseActivity : AppCompatActivity() {
         })
 
         btnaddExpense.setOnClickListener(View.OnClickListener {
-            if (validate(edtDesignationExpense) && validate(edtQuantityExpense) && validate(edtUnitPriceExpense) ){
+            if (validate(edtDesignationExpense) && validate(edtQuantityExpense) && validate(edtUnitPriceExpense) &&
+                !edtamountPayAddExpense.isVisible ){
                 //&& expenseFreshAdapter.freshExpenseList.isNotEmpty()
                 createExpense()
             }
+            else if (validate(edtDesignationExpense) && validate(edtUnitPriceExpense) &&
+                    validate(edtamountPayAddExpense) && edtamountPayAddExpense.isVisible){
+                createExpense()
+             }
 
         })
 
@@ -126,6 +133,38 @@ class AddExpenseActivity : AppCompatActivity() {
         spinTypeExpense = findViewById(R.id.spinner_expense)
         txtAddExpenseFresh = findViewById(R.id.txt_add_expense_fresh)
         txtTotalAmountExpense = findViewById(R.id.total_amount_expense)
+        edtamountPayAddExpense = findViewById(R.id.amountPay_add_expense)
+        txtRestAmountExpense= findViewById(R.id.txt_rest_amount_expense)
+        lnyAddExpenseBaseCategory= findViewById(R.id.lny_holdRestAmountExp)
+        txtIndicUnitPriceExp = findViewById(R.id.txtIndicUnitPriceExp)
+        txtIndicQtyExp = findViewById(R.id.txtIndicQtyExp)
+        txtIndicAmountPayExp = findViewById(R.id.txtIndicAmountPayExp)
+        typeExpense = TypeExpense()
+    }
+
+    private fun makeViewFormVisible(){
+
+        if (selecteTypeExpense == "Hangard"){
+            lnyAddExpenseBaseCategory.visibility = View.VISIBLE
+            edtamountPayAddExpense.visibility = View.VISIBLE
+            txtIndicAmountPayExp.visibility = View.VISIBLE
+
+            edtQuantityExpense.visibility = View.GONE
+            txtIndicQtyExp.visibility = View.GONE
+            edtUnitPriceExpense.hint = "Coût Main d'oeuvre"
+            txtIndicUnitPriceExp.text  = "Coût Main d'oeuvre"
+        }
+        else{
+            lnyAddExpenseBaseCategory.visibility = View.GONE
+            edtamountPayAddExpense.visibility = View.GONE
+            txtIndicAmountPayExp.visibility = View.GONE
+
+            edtQuantityExpense.visibility = View.VISIBLE
+            txtIndicQtyExp.visibility = View.VISIBLE
+
+            edtUnitPriceExpense.hint = "Coût Depense"
+            txtIndicUnitPriceExp.text  = "Coût Depense"
+        }
     }
 
     private fun populateSpinnerTypeExpense(){
@@ -156,7 +195,6 @@ class AddExpenseActivity : AppCompatActivity() {
 
         }*/
 
-        val typeExpense = TypeExpense()
         typeExpense.design_type_expense = "Hangard"
         //typeExpense.design_type_expense = "Fonctionnement"
         typeListExpense.add(typeExpense)
@@ -170,10 +208,12 @@ class AddExpenseActivity : AppCompatActivity() {
                 /*Toast.makeText(this@AddExpenseActivity, "" + (parent?.getItemAtPosition(pos) as TypeExpense).design_type_expense,
                     Toast.LENGTH_SHORT).show()*/
                 selecteTypeExpense = typeListExpense[pos].design_type_expense!!
+                makeViewFormVisible()
                 //Toast.makeText(this@AddExpenseActivity, selecteTypeExpense, Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
+                makeViewFormVisible()
             }
         }
 
@@ -204,11 +244,26 @@ class AddExpenseActivity : AppCompatActivity() {
         progressDialog.show() // show progress dialog
         val expense = Expense()
         expense.expense_designation = edtDesignationExpense.text.toString()
-        expense.expense_quantity = edtQuantityExpense.text.toString().toInt()
+        if (edtQuantityExpense.isVisible) expense.expense_quantity = edtQuantityExpense.text.toString().toInt()
         expense.expense_unit_price = edtUnitPriceExpense.text.toString().toDouble()
         expense.expense_type = selecteTypeExpense
         expense.expense_date = dateString
         expense.freshExpense = expenseFreshAdapter.freshExpenseList
+        calculateTotalExpense()
+        if (edtamountPayAddExpense.isVisible) {
+            val modelPaymentExpenseType = PaymentExpenseType()
+            val expensePayment:ArrayList<PaymentExpenseType> = ArrayList()
+            modelPaymentExpenseType.amountPayAddExpense = edtamountPayAddExpense.text.toString().toDouble()
+            modelPaymentExpenseType.payment_expense_date = dateString
+            expensePayment.add(modelPaymentExpenseType)
+            expense.paymentExpenseTypes = expensePayment
+            calculateRestAmount()
+            /*Toast.makeText(this@AddExpenseActivity," ok "+
+                    modelPaymentExpenseType.amountPayAddExpense.toString()+modelPaymentExpenseType.id_payment_expense.toString(),Toast.LENGTH_SHORT).show()*/
+        }
+        else{
+            expense.paymentExpenseTypes = ArrayList()
+        }
 
         // Api is a class in which we define a method getClient() that returns the API Interface class object
         // registration is a POST request type method in which we are sending our field's data
@@ -223,7 +278,7 @@ class AddExpenseActivity : AppCompatActivity() {
                     Toast.makeText(this@AddExpenseActivity,"Inserted",Toast.LENGTH_SHORT).show()
                     //Reset values
                     edtUnitPriceExpense.setText(""); edtDesignationExpense.setText(""); edtQuantityExpense.setText("")
-                    expenseFreshAdapter.freshExpenseList.clear(); txtAddExpenseFresh.text = "Ajout Frais"
+                    expenseFreshAdapter.freshExpenseList.clear(); edtamountPayAddExpense.setText(""); txtAddExpenseFresh.text = "Ajout Frais"
 
                     progressDialog.hide()
                 }
@@ -251,8 +306,8 @@ class AddExpenseActivity : AppCompatActivity() {
         val btnClose = view.findViewById<ImageButton>(R.id.btn_close_addFreshEnter)
 
         //Initialisation
-        edtDesignationFresh = view.findViewById<EditText>(R.id.edt_designation_freshExpense)
-        edtAmountFresh = view.findViewById<EditText>(R.id.edt_amountFreshExpense)
+        edtDesignationFresh = view.findViewById(R.id.edt_designation_freshExpense)
+        edtAmountFresh = view.findViewById(R.id.edt_amountFreshExpense)
         val btnAddFreshOnList = view.findViewById<Button>(R.id.btn_addFreshExpense)
         val btnUpdateFreshOnList = view.findViewById<Button>(R.id.btn_updateFreshExpense)
         val recycleViewFresh = view.findViewById<RecyclerView>(R.id.rcv_freshExpense)
@@ -334,6 +389,8 @@ class AddExpenseActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 calculateTotalExpense()
+                if (edtamountPayAddExpense.isVisible)
+                    calculateRestAmount()
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -357,6 +414,43 @@ class AddExpenseActivity : AppCompatActivity() {
 
         })
 
+        edtamountPayAddExpense.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                calculateRestAmount()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+
+    }
+
+    fun calculateRestAmount(){
+        var restAmount = 0.0
+        if (edtamountPayAddExpense.text.isNotBlank() && edtUnitPriceExpense.text.isNotEmpty() &&
+                edtUnitPriceExpense.text.isNotBlank() && edtUnitPriceExpense.text.isNotEmpty()){
+            if (convertEditTextToDouble(edtUnitPriceExpense) >= convertEditTextToDouble(edtamountPayAddExpense)){
+
+                restAmount = convertEditTextToDouble(edtUnitPriceExpense).
+                minus(convertEditTextToDouble(edtamountPayAddExpense))
+            }
+            else{
+                val length = edtamountPayAddExpense.text.length
+                edtamountPayAddExpense.text.delete(length -1, length)
+
+                if (edtamountPayAddExpense.text.isNotEmpty() && edtamountPayAddExpense.text.isNotBlank())
+                restAmount = convertEditTextToDouble(edtUnitPriceExpense).
+                minus(convertEditTextToDouble(edtamountPayAddExpense))
+                Toast.makeText(this, "Le montant payer ne doit pas être suppérieur à la main d'oeuvre", Toast.LENGTH_SHORT).show()
+            }
+        }
+        txtRestAmountExpense.text = restAmount.toString()
     }
 
     fun calculateTotalExpense(){
@@ -366,11 +460,17 @@ class AddExpenseActivity : AppCompatActivity() {
             totalFreshAmount = expenseFreshAdapter.freshExpenseList.sumOf { it.fresh_expense_amount!! }
 
         var result = 0.0
-        if (edtUnitPriceExpense.text.isNotEmpty() && edtUnitPriceExpense.text.isNotBlank() && validate(edtQuantityExpense)){
+        if (edtUnitPriceExpense.text.isNotEmpty() && edtUnitPriceExpense.text.isNotBlank() &&
+            validate(edtQuantityExpense) && edtQuantityExpense.isVisible){
             result = convertEditTextToDouble(edtUnitPriceExpense).times(convertEditTextToDouble(edtQuantityExpense))
-
+            //Calculate Total
             totalAmountExpense = result.plus(totalFreshAmount)
             //txtTotalAmountExpense.text = String.format(Locale.getDefault(), "%,d", totalAmountExpense)
+        }
+        else if (edtUnitPriceExpense.text.isNotEmpty() && edtUnitPriceExpense.text.isNotBlank() && !edtQuantityExpense.isVisible){
+            result = convertEditTextToDouble(edtUnitPriceExpense)
+            //Calculate Total
+            totalAmountExpense = result.plus(totalFreshAmount)
         }
         else
             totalAmountExpense = totalFreshAmount

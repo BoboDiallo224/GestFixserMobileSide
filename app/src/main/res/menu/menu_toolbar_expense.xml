@@ -11,6 +11,7 @@
         android:title="@string/search_title"
         android:icon="@drawable/ic_baseline_search"
         app:showAsAction="ifRoom|withText"
+        android:iconTint="@color/white"
         app:actionViewClass="android.widget.SearchView"/>
 
     <item android:id="@+id/call_statistic_expense"

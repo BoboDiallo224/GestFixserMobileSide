@@ -13,8 +13,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.FixserMobileApp.NoActionBar">
+        android:theme="@style/Theme.FixserMobileApp.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".expenses.ExpenseDetails"
+            android:exported="true" />
         <activity
             android:name=".exit_sale.ExitSaleActivity"
             android:exported="true" />

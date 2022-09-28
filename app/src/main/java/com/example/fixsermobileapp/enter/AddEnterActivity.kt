@@ -95,7 +95,7 @@ class AddEnterActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(true)
 
         //Modal Sheet Bottom open event
-        btnAddListProdEnter = findViewById(R.id.btn_addlistprod_enter)
+        btnAddListProdEnter = findViewById(R.id.btn_addListProdEnter)
         btnAddListProdEnter.setOnClickListener(View.OnClickListener {
             buttomSheetModalAddEnterProduct()
         })

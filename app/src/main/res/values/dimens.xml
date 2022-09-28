@@ -18,4 +18,6 @@
     <dimen name="btn_menu_expense">40dp</dimen>
     <dimen name="edt_addexpense_height">60dp</dimen>
     <dimen name="marg_top10">10dp</dimen>
+    <dimen name="middle_size">16sp</dimen>
+    <dimen name="itemPadding">7dp</dimen>
 </resources>

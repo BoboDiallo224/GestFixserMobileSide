@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.example.fixsermobileapp.R
 import com.google.android.material.snackbar.Snackbar
 import android.animation.ObjectAnimator
@@ -15,31 +14,36 @@ import android.animation.ObjectAnimator
 import android.animation.AnimatorSet
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.ProgressBar
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
+import com.example.fixsermobileapp.expenses.AddExpenseActivity
+import com.example.fixsermobileapp.expenses.ExpenseDetails
+import com.example.fixsermobileapp.expenses.OnExpenseItemClickListener
+import com.example.fixsermobileapp.expenses.OnExpenseItemClickListener2
 import com.example.fixsermobileapp.expenses.entities.Expense
-import android.graphics.Movie
-import android.widget.Toast
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+/*class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var DURATION: Long = 200
     private var on_attach = true
-    /*private val VIEW_TYPE_ITEM = 0
-    private val VIEW_TYPE_LOADING = 1*/
+    private val VIEW_TYPE_ITEM = 1
+    private val VIEW_TYPE_LOADING = 0
     private val LOADING = 0
     private val ITEM = 1
     private var isLoadingAdded = false
-    private var mExpenseList:ArrayList<Expense> = ArrayList()
+    private var mExpenseList:ArrayList<Expense>? = ArrayList()
     private lateinit var context:Context
-    /**
+    *//**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
-     */
+     *//*
 
     fun CustomAdapterExpense(context: Context) {
         this.context = context
@@ -93,11 +97,11 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         // Create a new view, which defines the UI of the list item
-        /* val view = LayoutInflater.from(viewGroup.context)
+        *//* val view = LayoutInflater.from(viewGroup.context)
              .inflate(R.layout.cards_layout_expense, viewGroup, false)
          //view.setOnClickListener(ExpensesActivity.myOnClickListener)
 
-         return MyViewHolder(view)*/
+         return MyViewHolder(view)*//*
         var myViewHolder: RecyclerView.ViewHolder? = null
         val inflater = LayoutInflater.from(viewGroup.context)
 
@@ -116,7 +120,7 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val expense = mExpenseList[position]
+        val expense = mExpenseList!![position]
 
         when(getItemViewType(position)){
             ITEM -> {
@@ -124,7 +128,7 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 // Get element from your dataset at this position and replace the
                 // contents of the view with that element
                 var expenseDate:String? = null
-                /*try {
+                *//*try {
                     val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss ")
                     val sdf = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
                     //expenseDate  = sdf.parse(expense.expense_date!!)
@@ -132,7 +136,7 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
                 }catch (e: ParseException){
                     e.printStackTrace()
-                }*/
+                }*//*
                 viewHolder.txtDateExpence!!.text = expense.expense_date
                 viewHolder.txtTypeExpense!!.text = expense.expense_type
                 viewHolder.txtDesignationExpense!!.text = expense.expense_designation
@@ -162,12 +166,21 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
-        return mExpenseList.size
+        return mExpenseList!!.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == mExpenseList.size - 1 && isLoadingAdded) LOADING else ITEM
+        *//*return if (mExpenseList!![position] == null) {
+            LOADING
+        } else {
+            ITEM
+        }*//*
+        return if (position == mExpenseList!!.size - 1 && isLoadingAdded) LOADING else ITEM
     }
+
+    *//*override fun getItemViewType(position: Int): Int {
+        return if (mExpenseList!![position] == null) LOADING else ITEM
+    }*//*
 
     fun addLoadingFooter() {
         isLoadingAdded = true
@@ -177,19 +190,23 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      fun removeLoadingFooter() {
         isLoadingAdded = false
         //val position =  mExpenseList.size - 1
-        val position =  mExpenseList.size.minus(1)
+        val position =  mExpenseList!!.size.minus(1)
         val result = getItem(position)
          println("ok "+result)
-         if (result != null) {
+         mExpenseList!!.removeAt(position)
 
-            mExpenseList.removeAt(position)
-            notifyItemRemoved(position)
-        }
+         notifyItemRemoved(position)
+    }
+
+    fun removeFresh(model: Expense) {
+        val position = mExpenseList!!.indexOf(model).minus(1)
+        mExpenseList!!.remove(model)
+        notifyItemRemoved(position)
     }
 
     fun add(expense: Expense) {
-        mExpenseList.add(expense)
-        notifyItemInserted(mExpenseList.size - 1)
+        mExpenseList!!.add(expense)
+        notifyItemInserted(mExpenseList!!.size - 1)
     }
 
     fun addAll(expenses: ArrayList<Expense>) {
@@ -199,7 +216,7 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private fun getItem(position: Int): Expense {
-        return mExpenseList.get(position)
+        return mExpenseList!![position]
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -230,36 +247,40 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         animator.start()
     }
 
-}
+}*/
 
 
 
 
 //CustomAdapterExpense
- /*class CustomAdapterExpense(val mExpenseList:List<Expense> = ArrayList()) : RecyclerView.Adapter<CustomAdapterExpense.MyViewHolder>() {
+ class CustomAdapterExpense(private val mExpenseList:ArrayList<Expense> = ArrayList(),
+                            private val mOnExpenseOnClickListner: OnExpenseItemClickListener2) : RecyclerView.Adapter<CustomAdapterExpense.MyViewHolder>() {
     var DURATION: Long = 500
     private var on_attach = true
-    *//*private val VIEW_TYPE_ITEM = 0
-    private val VIEW_TYPE_LOADING = 1*//*
+    private val VIEW_TYPE_ITEM = 0
+    private val VIEW_TYPE_LOADING = 1
     private val LOADING = 0
     private val ITEM = 1
     private val isLoadingAdded = false
-    *//**
+
+    /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
-     *//*
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var txtDesignationExpense: TextView? = null
-        var txtQuantityExpense: TextView? = null
-        var txtUnitPrice: TextView? = null
-        var txtTypeExpense: TextView? = null
-        var txtDateExpence: TextView? = null
-        var txtAmountTotal: TextView? = null
-        var txtAmountFresh: TextView? = null
-        var txtAmountTotalFresh: TextView? = null
+     */
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var txtDesignationExpense: TextView? = view.findViewById(R.id.txtDesignationExpense)
+        var txtQuantityExpense: TextView? = view.findViewById(R.id.txtQteExpense)
+        var txtUnitPrice: TextView? = view.findViewById(R.id.txtUnitPriceExpense)
+        var txtTypeExpense: TextView? = view.findViewById(R.id.txtTypeExpense)
+        var txtDateExpence: TextView? = view.findViewById(R.id.txtDateExpense)
+        var txtAmountTotal: TextView? = view.findViewById(R.id.txtAmountTotalExpense)
+        var txtAmountFresh: TextView? = view.findViewById(R.id.txtAmountExpenseFresh)
+        var txtAmountTotalFresh: TextView? = view.findViewById(R.id.txtTotalExpenseFresh)
+        var card_viewItemExpense:CardView? = view.findViewById(R.id.card_viewItemExpense)
+        var txtIfExpensePay:TextView = view.findViewById(R.id.txtIfExpensePay)
         //var imageViewIcon: ImageView? = null
 
-        init {
+       /* init {
             // Define click listener for the ViewHolder's View.
             txtDesignationExpense = view.findViewById(R.id.txtDesignationExpense)
             txtQuantityExpense = view.findViewById(R.id.txtQteExpense)
@@ -269,15 +290,18 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             txtAmountTotal = view.findViewById(R.id.txtAmountTotalExpense)
             txtAmountFresh = view.findViewById(R.id.txtAmountExpenseFresh)
             txtAmountTotalFresh = view.findViewById(R.id.txtTotalExpenseFresh)
-
-
+            position2 = bindingAdapterPosition
             view.setOnClickListener { v: View  ->
                 val position: Int = getAdapterPosition()
 
+
                 Snackbar.make(v, "Click detected on item $position",
                     Snackbar.LENGTH_LONG).setAction("Action", null).show()
+
+                *//*val model = mExpenseList[position]
+                mOnExpenseOnClickListner.getExpenseId(position, model)*//*
             }
-        }
+        }*/
 
     }
 
@@ -289,17 +313,17 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    *//*fun CustomAdapterExpense(data: ArrayList<DataModelExpense>?) {
+    /*fun CustomAdapterExpense(data: ArrayList<DataModelExpense>?) {
         dataSet = data!!
-    }*//*
+    }*/
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyViewHolder {
-
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.cards_layout_expense, viewGroup, false)
+            .inflate(R.layout.item_layout_expense, viewGroup, false)
         //view.setOnClickListener(ExpensesActivity.myOnClickListener)
+        val holder = MyViewHolder(view)
 
         return MyViewHolder(view)
 
@@ -310,13 +334,35 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val expense = mExpenseList[position]
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.txtDateExpence!!.text = expense.expense_date.toString()
+
+        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE)
+        val targetFormat = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH)
+        val dateStr:Date = formatter.parse(expense.expense_date)
+        val formatedDate = targetFormat.format(dateStr)
+
+        viewHolder.txtDateExpence!!.text = formatedDate
         viewHolder.txtDesignationExpense!!.text = expense.expense_designation
+        viewHolder.txtTypeExpense!!.text = expense.expense_type
         //viewHolder.textViewVersion!!.text = dataSet!![position].version
+
         viewHolder.txtQuantityExpense!!.text = expense.expense_quantity.toString()
         viewHolder.txtUnitPrice!!.text = expense.expense_unit_price.toString()
         //Calculate
-        val totalAmount = expense.expense_unit_price!!.times(expense.expense_quantity!!)
+        //if is expense categorie hangard
+        val totalAmount = if (expense.expense_type!! == viewHolder.itemView.resources.getString(R.string.typeHangard)){
+            val totalAmountPayment = expense.paymentExpenseTypes!!.sumOf { it.amountPayAddExpense!! }
+            val restAmount = expense.expense_unit_price!!.minus(totalAmountPayment)
+            viewHolder.txtIfExpensePay.visibility = View.VISIBLE
+            if (restAmount != 0.0){
+                //viewHolder.card_viewItemExpense!!.background = ContextCompat.getDrawable(viewHolder.itemView.context, R.drawable.shape_app_bar_notradius)
+            }
+            else viewHolder.txtIfExpensePay.text = "Payer"
+            //expense.expense_unit_price!!.plus(totalAmountPayment)
+            expense.expense_unit_price!!
+        } else{
+            expense.expense_unit_price!!.times(expense.expense_quantity!!)
+        }
+
         val totalAmountFresh = expense.freshExpense!!.sumOf { it.fresh_expense_amount!! }
 
         viewHolder.txtAmountTotal!!.text = totalAmount.toString()
@@ -326,12 +372,29 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         //viewHolder.imageViewIcon!!.setImageResource(images[position])
 
         setAnimation(viewHolder.itemView, position)
+
+        viewHolder.itemView.setOnClickListener(View.OnClickListener {
+
+            val model = mExpenseList[position]
+            mOnExpenseOnClickListner.getExpenseId(position, model)
+        })
         //FromLeftToRight(viewHolder.itemView, position)
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
         return mExpenseList.size
+    }
+
+    fun addAll(expenses: ArrayList<Expense>) {
+        for (result in expenses) {
+            add(result)
+        }
+    }
+
+    fun add(expense: Expense) {
+        mExpenseList.add(expense)
+        notifyItemInserted(mExpenseList.size)
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -380,6 +443,6 @@ class CustomAdapterExpense() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         animatorSet.playTogether(animatorTranslateY, animatorAlpha)
         animatorSet.start()
     }
-}*/
+}
 
 

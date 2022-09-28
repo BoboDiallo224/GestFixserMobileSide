@@ -26,7 +26,7 @@
 
     <string name="libelle">Libelle</string>
     <string name="quantite">Quantite</string>
-    <string name="pri_unit">Prix Unitaire</string>
+    <string name="pri_unit">Coût Depense</string>
     <string name="frais">Ajout Frais</string>
     <string name="date_expense">Date Depense</string>
     <string name="valider">Valider</string>
@@ -39,8 +39,14 @@
     <string name="ajouter_produit">Ajouter un produit</string>
     <string name="close">Fermer</string>
     <string name="delete">Supprimer</string>
-    <string name="montant_payer">Montant Payer</string>
+    <string name="amountPay">Montant Payer</string>
     <string name="add_fresh">Ajouter des frais</string>
     <string name="amountFresh">Montant Frais</string>
     <string name="update">Update</string>
+    <string name="afficher_tous_les_frais">Afficher tous les frais</string>
+    <string name="afficher_tous_les_paiement">Afficher tous les paiements</string>
+
+    <string name="typeHangard">Hangard</string>
+    <string name="add_payment">Ajouter un payement</string>
+    <string name="amountRest">Montant Restant:</string>
 </resources>

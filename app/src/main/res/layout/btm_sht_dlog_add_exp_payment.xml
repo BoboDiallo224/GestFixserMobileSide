@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="20dp"
-        app:cardElevation="25dp">
+        android:layout_height="match_parent">
 
-        <ScrollView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -28,13 +26,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/edt_paddin_sta_end"
-                        android:text="@string/add_fresh"
+                        android:text="@string/add_payment"
                         android:textColor="@color/black"
                         android:textSize="@dimen/big_text"
                         android:textStyle="bold" />
 
                     <ImageButton
-                        android:id="@+id/btn_close_addFreshEnter"
+                        android:id="@+id/btn_closeAddPaiExp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -48,61 +46,72 @@
 
 
                 <EditText
-                    android:id="@+id/edt_designation_freshExpense"
+                    android:id="@+id/edtDatePayExp"
                     style="@style/myform_style"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edt_addexpense_height"
-                    android:drawableStart="@drawable/ic_baseline_info_24"
-                    android:hint="@string/designation" />
+                    android:drawableStart="@drawable/ic_baseline_calendar_today_24"
+                    android:focusable="false"
+                    android:inputType="datetime" />
 
                 <EditText
-                    android:id="@+id/edt_amountFreshExpense"
+                    android:id="@+id/edtAmountPayExp"
                     style="@style/myform_style"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edt_addexpense_height"
                     android:drawableStart="@drawable/ic_baseline_money_24"
-                    android:hint="@string/amountFresh"
+                    android:hint="@string/amountPay"
                     android:inputType="number" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_margin="@dimen/edt_marg_top"
+                    android:layout_marginStart="@dimen/marg_top10"
+                    android:layout_marginTop="@dimen/marg_top10"
+                    android:layout_marginEnd="@dimen/marg_top10"
+                    android:layout_marginBottom="@dimen/marg_top10"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btn_addFreshExpense"
-                        style="@style/ButtonStyle"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableEnd="@drawable/ic_baseline_check_24"
-                        android:text="@string/valider" />
+                        android:padding="@dimen/itemPadding"
+                        android:text="@string/amountRest"
+                        android:textAlignment="textStart"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/medium_text"
+                        android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/btn_updateFreshExpense"
-                        style="@style/ButtonStyle"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/txtRestAmountExp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/edt_marg_start"
-                        android:drawableEnd="@drawable/ic_baseline_check_24"
-                        android:text="@string/update" />
+                        android:padding="@dimen/itemPadding"
+                        android:text="@string/amountRest"
+                        android:textAlignment="textStart"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/medium_text"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcv_freshExpense"
-                    android:layout_margin="@dimen/edt_marg_top"
+                <Button
+                    android:id="@+id/btnAddExpPay"
+                    style="@style/ButtonStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/marg_top10"
+                    android:drawableEnd="@drawable/ic_baseline_check_24"
+                    android:text="@string/valider" />
 
-                </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
-        </ScrollView>
 
 
-    </androidx.cardview.widget.CardView>
-
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
 </RelativeLayout>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#536DFE</color><!--536DFE-->
-    <color name="purple_500">#232324</color><!--536DFE DDDBDB-->
+    <color name="purple_500">#536DFE</color><!--232324 DDDBDB-->
     <color name="purple_700">#536DFE</color><!---->
     <color name="teal_200">#DF7E03</color>
     <color name="employee_text">#FF5252</color>
-    <color name="red_color">#DF0101</color>
+    <color name="red_color">#e84118</color>
     <color name="teal_700">#FF018786</color>
     <color name="black_white">#DDDBDB</color>
     <color name="shape_blue">#FF6E40</color>
@@ -15,5 +15,6 @@
     <color name="card_menu_color">#FFFFFFFF</color>
     <color name="yellow">#FFD740</color>
     <color name="myspinner_text_color">#536DFE</color>
-
+    <color name="darker_gray2">#aaa</color>
+    <color name="shimmer_placeholder">#dddddd</color><!--dddddd-->
 </resources>
